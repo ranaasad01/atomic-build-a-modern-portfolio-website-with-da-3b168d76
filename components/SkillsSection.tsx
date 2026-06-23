@@ -46,11 +46,11 @@ export default function SkillsSection() {
           viewport={vp}
           className="mb-16"
         >
-          {/* Blur-reveal heading */}
+          {/* Blur-reveal heading — updated animation */}
           <motion.h2
-            initial={{ opacity: 0, y: 32, filter: 'blur(8px)' }}
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ type: 'spring', stiffness: 65, damping: 15 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance"
           >
@@ -90,33 +90,37 @@ export default function SkillsSection() {
               key={cat.category}
               variants={popIn}
               whileHover={{
-                scale: 1.02,
-                borderColor: 'rgba(168,85,247,0.3)',
-                transition: { duration: 0.25 },
+                scale: 1.03,
+                y: -4,
+                transition: { type: 'spring', stiffness: 300, damping: 20 },
               }}
               className="card-surface rounded-2xl p-6 hover:border-white/10 transition-all duration-300 group"
             >
               <div className="flex items-center gap-2 mb-5">
-                <span className={"w-2 h-2 rounded-full " + categoryDots[cat.category]} />
-                <h3 className={"text-sm font-semibold tracking-wide " + (categoryColors[cat.category] ?? "text-white")}>
+                <span className={`w-2 h-2 rounded-full ${categoryDots[cat.category]}`} />
+                <h3 className={`glitch-hover text-xs font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border ${categoryColors[cat.category]}`}>
                   {cat.category}
                 </h3>
               </div>
-              <ul className="flex flex-col gap-2.5">
-                {cat.items.map((item) => (
+
+              {/* Individual skill badges — staggerContainerFast + popIn */}
+              <motion.ul
+                variants={staggerContainerFast}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex flex-col gap-2"
+              >
+                {cat.items.map((skill) => (
                   <motion.li
-                    key={item}
-                    whileHover={{
-                      scale: 1.1,
-                      color: '#a855f7',
-                      transition: { duration: 0.2 },
-                    }}
-                    className="text-sm text-[#777] font-medium px-3 py-1.5 rounded-lg bg-white/3 border border-white/5 cursor-default"
+                    key={skill}
+                    variants={popIn}
+                    className="text-sm text-[#aaa] py-1.5 px-3 rounded-lg bg-white/3 border border-white/5 hover:text-white hover:bg-white/6 hover:border-purple-500/20 transition-all duration-200 cursor-default"
                   >
-                    {item}
+                    {skill}
                   </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
           ))}
         </motion.div>

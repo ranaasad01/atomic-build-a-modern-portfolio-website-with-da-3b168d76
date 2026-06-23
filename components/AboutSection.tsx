@@ -33,15 +33,13 @@ export default function AboutSection() {
             initial="hidden"
             whileInView="visible"
             viewport={vp}
-            whileInView={{ rotateY: [0, 2, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="relative flex justify-center lg:justify-start"
           >
             <div className="relative w-72 h-72 md:w-80 md:h-80">
               {/* Rotating border ring — animated spin */}
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 rounded-3xl border border-purple-500/20"
               />
               {/* Static second ring */}
@@ -60,8 +58,8 @@ export default function AboutSection() {
 
               {/* Floating badge */}
               <motion.div
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ y: [0, -6, 0], rotate: [0, 1, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -bottom-4 -right-4 glass rounded-2xl px-4 py-3 border border-white/8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
               >
                 <div className="flex items-center gap-2">
@@ -78,50 +76,65 @@ export default function AboutSection() {
             initial="hidden"
             whileInView="visible"
             viewport={vp}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col gap-7"
           >
             <motion.h2
               variants={fadeInRight}
               className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-balance"
             >
-              Crafting software that{" "}
-              <span className="text-gradient">feels alive</span>
+              Crafting digital{" "}
+              <span className="text-gradient">experiences</span>{" "}
+              that resonate
             </motion.h2>
 
-            <motion.p variants={fadeInRight} className="text-[#777] text-lg leading-relaxed text-pretty">
-              I&apos;m a full-stack engineer based in San Francisco with 5+ years of experience
-              building products that sit at the intersection of great engineering and thoughtful
-              design. I&apos;ve worked with early-stage startups and scaled teams alike.
+            <motion.p
+              variants={fadeInUp}
+              className="text-[#666] text-lg leading-relaxed text-pretty"
+            >
+              I&apos;m a full-stack engineer with 5+ years of experience building
+              products that sit at the intersection of great engineering and
+              thoughtful design. I care deeply about performance, accessibility,
+              and the tiny details that make an interface feel alive.
             </motion.p>
 
-            <motion.p variants={fadeInRight} className="text-[#666] text-base leading-relaxed text-pretty">
-              When I&apos;m not shipping features, I&apos;m contributing to open source, writing about
-              software architecture, or exploring the latest in AI tooling. I believe the best
-              products are built at the intersection of empathy and craft.
+            <motion.p
+              variants={fadeInUp}
+              className="text-[#555] text-base leading-relaxed text-pretty"
+            >
+              When I&apos;m not pushing pixels or wrangling APIs, you&apos;ll find me
+              contributing to open source, writing about web performance, or
+              experimenting with generative art.
             </motion.p>
 
             {/* Stats */}
             <motion.div
               variants={staggerContainer}
-              className="grid grid-cols-3 gap-4 pt-2"
+              className="grid grid-cols-3 gap-4 pt-4 border-t border-white/6"
             >
               {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   variants={scaleIn}
-                  className="card-surface rounded-2xl p-4 text-center border border-white/5"
+                  className="flex flex-col gap-1"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-white mb-1 font-[Syne]">
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 150, damping: 12 }}
+                    viewport={{ once: true }}
+                    className="text-3xl font-bold text-white font-display"
+                  >
                     {stat.value}
-                  </div>
-                  <div className="text-xs text-[#555] leading-tight">{stat.label}</div>
+                  </motion.span>
+                  <span className="text-xs text-[#555] font-medium tracking-wide">
+                    {stat.label}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* CTA */}
-            <motion.div variants={fadeInRight} className="flex items-center gap-4 pt-1">
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-2">
               <a
                 href="#contact"
                 onClick={(e) => {

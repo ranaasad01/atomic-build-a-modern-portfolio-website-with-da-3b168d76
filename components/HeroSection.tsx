@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowDown, Code2 as Github, Briefcase as Linkedin, Mail } from 'lucide-react';
-import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, revealMask, popIn } from "@/lib/motion";
+import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, popIn } from "@/lib/motion";
 
 const TITLES = [
   "Full-Stack Engineer",
@@ -26,16 +26,16 @@ const codeLines = [
 
 const containerVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.4 } },
+  visible: { transition: { staggerChildren: 0.13, delayChildren: 0.5 } },
 };
 
 const lineVariant: Variants = {
-  hidden: { opacity: 0, x: 20, filter: 'blur(4px)' },
+  hidden: { opacity: 0, x: 28, filter: 'blur(6px)' },
   visible: {
     opacity: 1,
     x: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { type: 'spring', stiffness: 90, damping: 18 },
   },
 };
 
@@ -89,174 +89,211 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — copy */}
+      <div className="max-w-6xl mx-auto px-6 w-full pt-28 pb-20 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        {/* ── Left column ── */}
+        <div className="flex flex-col gap-8">
+          {/* Eyebrow badge */}
           <motion.div
-            variants={fadeInLeft}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-7"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="inline-flex items-center gap-2 w-fit"
           >
-            {/* Available badge */}
-            <motion.div
-              animate={{ scale: [1, 1.04, 1] }}
-              transition={{ duration: 2.5, repeat: Infinity }}
-              className="inline-flex items-center gap-2 w-fit"
-            >
-              <span className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/20 bg-green-500/8 text-green-400 text-xs font-medium tracking-wide">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Available for work
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <div className="flex flex-col gap-3">
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-balance">
-                <span className="text-white">Hi, I&apos;m </span>
-                <span className="text-gradient">Alex</span>
-              </h1>
-              {/* Typewriter subtitle */}
-              <div className="h-10 flex items-center">
-                <span className="text-2xl md:text-3xl font-semibold text-[#888] tracking-tight">
-                  {displayed}
-                  <span className="inline-block w-0.5 h-7 bg-purple-400 ml-0.5 animate-pulse align-middle" />
-                </span>
-              </div>
-            </div>
-
-            <p className="text-[#666] text-lg leading-relaxed max-w-md text-pretty">
-              I build fast, accessible, and beautiful digital products — from pixel-perfect
-              UIs to resilient backend systems.
-            </p>
-
-            {/* CTA row */}
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="px-7 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.45)] active:scale-95"
-              >
-                View my work
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="px-7 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/25 font-semibold text-sm transition-all duration-300 active:scale-95"
-              >
-                Get in touch
-              </a>
-            </div>
-
-            {/* Social icons */}
-            <div className="flex items-center gap-3 pt-2">
-              <motion.a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-white hover:border-white/25 transition-colors duration-300"
-              >
-                <Github size={17} />
-              </motion.a>
-              <motion.a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-blue-400 hover:border-blue-500/30 transition-colors duration-300"
-              >
-                <Linkedin size={17} />
-              </motion.a>
-              <motion.a
-                href="mailto:hello@example.com"
-                aria-label="Email"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-purple-400 hover:border-purple-500/30 transition-colors duration-300"
-              >
-                <Mail size={17} />
-              </motion.a>
-            </div>
+            <span className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/25 bg-purple-500/8 text-purple-300 text-xs font-mono tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              Available for work
+            </span>
           </motion.div>
 
-          {/* Right — code window */}
-          <motion.div
-            variants={fadeInRight}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ scale: 1.015, transition: { duration: 0.4 } }}
-            className="hidden lg:block"
+          {/* Main heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 60, filter: 'blur(12px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ type: 'spring', stiffness: 60, damping: 14, delay: 0.3 }}
+            className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-balance"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-white/8 shadow-[0_24px_80px_rgba(0,0,0,0.5)] bg-[#111]">
-              {/* Window chrome */}
-              <div className="flex items-center gap-2 px-5 py-4 border-b border-white/6 bg-[#161616]">
+            Hi, I&apos;m{" "}
+            <span className="text-gradient glow-text">Alex Carter</span>
+          </motion.h1>
+
+          {/* Typewriter subtitle */}
+          <motion.div
+            initial={{ opacity: 0, x: -30, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            transition={{ type: 'spring', stiffness: 80, damping: 16, delay: 0.55 }}
+            className="flex items-center gap-3 text-xl md:text-2xl text-[#888] font-light"
+          >
+            <span className="text-purple-400">&gt;</span>
+            <span className="font-mono">
+              {displayed}
+              <span className="inline-block w-0.5 h-5 bg-purple-400 ml-0.5 animate-pulse align-middle" />
+            </span>
+          </motion.div>
+
+          {/* Bio blurb */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="text-[#666] text-lg leading-relaxed max-w-lg text-pretty"
+          >
+            I build fast, accessible, and beautiful digital products — from pixel-perfect
+            UIs to scalable backend systems. 5+ years turning ideas into production.
+          </motion.p>
+
+          {/* CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.75 }}
+            className="flex flex-wrap gap-4"
+          >
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-7 py-3.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] active:scale-95"
+            >
+              View my work
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-7 py-3.5 rounded-full border border-white/12 hover:border-purple-500/40 text-white/80 hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/4 active:scale-95"
+            >
+              Get in touch
+            </a>
+          </motion.div>
+
+          {/* Social links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+            className="flex items-center gap-4 pt-2"
+          >
+            <span className="text-[#444] text-xs font-mono tracking-widest uppercase">Find me on</span>
+            <div className="flex items-center gap-3">
+              {[
+                { icon: Github, href: "https://github.com", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full border border-white/8 flex items-center justify-center text-[#555] hover:text-purple-400 hover:border-purple-500/30 transition-all duration-300"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── Right column — code window ── */}
+        <motion.div
+          initial={{ opacity: 0, x: 60, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+          transition={{ type: 'spring', stiffness: 55, damping: 16, delay: 0.4 }}
+          className="hidden lg:block"
+        >
+          <div className="relative">
+            {/* Glow behind window */}
+            <div className="absolute -inset-4 rounded-3xl bg-purple-600/10 blur-2xl" />
+
+            {/* Terminal window */}
+            <div className="scan-overlay relative rounded-2xl border border-white/8 bg-[#0d0d0d] shadow-[0_24px_80px_rgba(0,0,0,0.6)] overflow-hidden">
+              {/* Title bar */}
+              <div className="flex items-center gap-2 px-5 py-4 border-b border-white/6 bg-[#111]">
                 <span className="w-3 h-3 rounded-full bg-red-500/70" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
                 <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                <span className="ml-4 text-xs text-[#444] font-mono">portfolio.ts</span>
+                <span className="ml-4 text-[#444] text-xs font-mono">portfolio.ts</span>
               </div>
 
-              {/* Code body */}
-              <div className="p-6 font-mono text-sm leading-relaxed">
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {codeLines.map((line, i) => (
-                    <motion.div
-                      key={i}
-                      variants={lineVariant}
-                      className="flex"
-                      style={{ paddingLeft: `${line.indent * 1.5}rem` }}
-                    >
-                      <span className="select-none text-[#333] w-6 shrink-0 text-right mr-4">{i + 1}</span>
-                      <span>
-                        {line.tokens.map((tok, j) => (
-                          <span key={j} className={tok.c}>{tok.t}</span>
-                        ))}
-                      </span>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
+              {/* Code lines */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="p-6 font-mono text-sm leading-7 space-y-0.5"
+              >
+                {codeLines.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    variants={lineVariant}
+                    className="flex"
+                    style={{ paddingLeft: `${line.indent * 1.5}rem` }}
+                  >
+                    <span className="select-none text-[#333] mr-5 text-xs w-4 text-right shrink-0">
+                      {i + 1}
+                    </span>
+                    <span>
+                      {line.tokens.map((tok, j) => (
+                        <span key={j} className={tok.c}>
+                          {tok.t}
+                        </span>
+                      ))}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
 
-              {/* Bottom status bar */}
-              <div className="px-5 py-3 border-t border-white/5 bg-[#0e0e0e] flex items-center justify-between">
-                <span className="text-xs text-[#333] font-mono">TypeScript</span>
-                <span className="flex items-center gap-1.5 text-xs text-green-400/70 font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400/70" />
+              {/* Status bar */}
+              <div className="flex items-center justify-between px-5 py-2.5 border-t border-white/5 bg-[#0a0a0a]">
+                <span className="text-[#333] text-xs font-mono">TypeScript</span>
+                <span className="flex items-center gap-1.5 text-green-400 text-xs font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                   ready
                 </span>
               </div>
             </div>
-          </motion.div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-[#444] text-xs font-mono tracking-widest uppercase">scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <ArrowDown size={16} className="text-[#444]" />
-          </motion.div>
-        </div>
+            {/* Floating stat chips */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-5 -right-5 glass rounded-xl px-4 py-2.5 border border-white/8 shadow-lg"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-purple-400 text-lg font-bold">40+</span>
+                <span className="text-[#666] text-xs">Projects shipped</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute -bottom-5 -left-5 glass rounded-xl px-4 py-2.5 border border-white/8 shadow-lg"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-green-400 text-lg font-bold">5+</span>
+                <span className="text-[#666] text-xs">Years experience</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0], opacity: [0.4, 1, 0.4] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
+        onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
+      >
+        <span className="text-[#444] text-xs font-mono tracking-widest uppercase">Scroll</span>
+        <ArrowDown size={16} className="text-[#444]" />
+      </motion.div>
     </motion.section>
   );
 }
