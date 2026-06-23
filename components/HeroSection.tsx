@@ -6,22 +6,22 @@ import { ArrowDown, Code2 as Github, Briefcase as Linkedin, Mail } from 'lucide-
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, popIn } from "@/lib/motion";
 
 const TITLES = [
-  "Full-Stack Engineer",
-  "UI/UX Craftsman",
-  "Open Source Builder",
-  "Product Thinker",
+  'SQA Engineer',
+  'Test Automation Expert',
+  'Quality Advocate',
+  'Bug Hunter',
 ];
 
 const codeLines = [
-  { indent: 0, tokens: [{ t: "const ", c: "text-purple-400" }, { t: "portfolio", c: "text-blue-300" }, { t: " = {", c: "text-white/70" }] },
-  { indent: 1, tokens: [{ t: "name", c: "text-green-300" }, { t: ": ", c: "text-white/50" }, { t: '"Rao Muhammad Ali"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
-  { indent: 1, tokens: [{ t: "role", c: "text-green-300" }, { t: ": ", c: "text-white/50" }, { t: '"Full-Stack Engineer"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
-  { indent: 1, tokens: [{ t: "stack", c: "text-green-300" }, { t: ": [", c: "text-white/50" }] },
-  { indent: 2, tokens: [{ t: '"Next.js"', c: "text-amber-300" }, { t: ", ", c: "text-white/50" }, { t: '"TypeScript"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
-  { indent: 2, tokens: [{ t: '"Node.js"', c: "text-amber-300" }, { t: ", ", c: "text-white/50" }, { t: '"PostgreSQL"', c: "text-amber-300" }] },
-  { indent: 1, tokens: [{ t: "],", c: "text-white/50" }] },
-  { indent: 1, tokens: [{ t: "available", c: "text-green-300" }, { t: ": ", c: "text-white/50" }, { t: "true", c: "text-purple-400" }] },
-  { indent: 0, tokens: [{ t: "}", c: "text-white/70" }] },
+  { indent: 0, tokens: [{ t: 'const ', c: 'text-purple-400' }, { t: 'profile', c: 'text-blue-300' }, { t: ' = {', c: 'text-white/70' }] },
+  { indent: 1, tokens: [{ t: 'name', c: 'text-green-300' }, { t: ': ', c: 'text-white/50' }, { t: '"Rao Muhammad Ali"', c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
+  { indent: 1, tokens: [{ t: 'role', c: 'text-green-300' }, { t: ': ', c: 'text-white/50' }, { t: '"SQA Engineer"', c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
+  { indent: 1, tokens: [{ t: 'tools', c: 'text-green-300' }, { t: ': [', c: 'text-white/50' }] },
+  { indent: 2, tokens: [{ t: '"Cypress"', c: 'text-amber-300' }, { t: ', ', c: 'text-white/50' }, { t: '"Selenium"', c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
+  { indent: 2, tokens: [{ t: '"Postman"', c: 'text-amber-300' }, { t: ', ', c: 'text-white/50' }, { t: '"JMeter"', c: 'text-amber-300' }] },
+  { indent: 1, tokens: [{ t: '],', c: 'text-white/50' }] },
+  { indent: 1, tokens: [{ t: 'available', c: 'text-green-300' }, { t: ': ', c: 'text-white/50' }, { t: 'true', c: 'text-purple-400' }] },
+  { indent: 0, tokens: [{ t: '}', c: 'text-white/70' }] },
 ];
 
 const containerVariants: Variants = {
@@ -90,19 +90,19 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 w-full pt-28 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
           {/* ── Left column ── */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-7"
           >
-            {/* Availability badge */}
-            <motion.div variants={popIn}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-medium tracking-wide">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Available for new projects
+            {/* Eyebrow */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              <span className="text-purple-400 text-xs font-mono tracking-[0.2em] uppercase">
+                Available for work
               </span>
             </motion.div>
 
@@ -111,12 +111,14 @@ export default function HeroSection() {
               variants={fadeInUp}
               className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-balance"
             >
-              Hi, I&apos;m{" "}
-              <span className="text-gradient">Rao Muhammad Ali</span>
+              Rao{" "}
+              <span className="text-gradient">Muhammad</span>
+              <br />
+              Ali
             </motion.h1>
 
-            {/* Typewriter role */}
-            <motion.div variants={fadeInUp} className="h-10 flex items-center">
+            {/* Typewriter title */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-3 h-9">
               <span className="text-xl md:text-2xl text-[#888] font-light">
                 {displayed}
                 <span className="inline-block w-0.5 h-6 bg-purple-400 ml-0.5 animate-pulse align-middle" />
@@ -126,24 +128,24 @@ export default function HeroSection() {
             {/* Bio */}
             <motion.p
               variants={fadeInUp}
-              className="text-[#888] text-base md:text-lg leading-relaxed max-w-lg"
+              className="text-[#666] text-lg leading-relaxed max-w-lg text-pretty"
             >
-              I build fast, accessible, and beautiful digital products — from
-              pixel-perfect UIs to scalable backend systems. Obsessed with
-              developer experience and clean code.
+              Passionate SQA Engineer dedicated to delivering high-quality software through
+              rigorous testing, automation frameworks, and a relentless pursuit of bug-free
+              experiences.
             </motion.p>
 
-            {/* CTA row */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 pt-2">
+            {/* CTAs */}
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-2">
               <a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)] active:scale-95"
+                className="px-7 py-3.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] active:scale-95"
               >
-                View My Work
+                View Projects
               </a>
               <a
                 href="#contact"
@@ -151,9 +153,9 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-white/80 hover:text-white text-sm font-semibold transition-all duration-300 hover:bg-white/5 active:scale-95"
+                className="px-7 py-3.5 rounded-full border border-white/10 hover:border-purple-500/40 text-[#888] hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/5 active:scale-95"
               >
-                Get In Touch
+                Get in Touch
               </a>
             </motion.div>
 
@@ -164,25 +166,25 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-white hover:border-white/25 transition-all duration-300"
               >
-                <Github size={20} />
+                <Github size={16} />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-blue-400 hover:border-blue-500/40 transition-all duration-300"
               >
-                <Linkedin size={20} />
+                <Linkedin size={16} />
               </a>
               <a
                 href="mailto:hello@example.com"
                 aria-label="Email"
-                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-purple-400 hover:border-purple-500/40 transition-all duration-300"
               >
-                <Mail size={20} />
+                <Mail size={16} />
               </a>
             </motion.div>
           </motion.div>
@@ -194,78 +196,72 @@ export default function HeroSection() {
             animate="visible"
             className="hidden lg:block"
           >
-            <div className="relative rounded-2xl border border-white/8 bg-[#111] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden">
-              {/* Window chrome */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/6 bg-[#0d0d0d]">
-                <span className="w-3 h-3 rounded-full bg-red-500/70" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                <span className="ml-3 text-xs text-[#444] font-mono">portfolio.ts</span>
-              </div>
+            <div className="relative">
+              {/* Glow behind card */}
+              <div className="absolute -inset-4 rounded-3xl bg-purple-600/10 blur-[60px]" />
 
-              {/* Code lines */}
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="p-6 font-mono text-sm leading-7"
-              >
-                {codeLines.map((line, i) => (
-                  <motion.div
-                    key={i}
-                    variants={lineVariant}
-                    className="flex"
-                    style={{ paddingLeft: `${line.indent * 1.5}rem` }}
-                  >
-                    <span className="select-none text-[#333] mr-4 text-xs leading-7 w-4 text-right shrink-0">
-                      {i + 1}
-                    </span>
-                    <span>
-                      {line.tokens.map((tok, j) => (
-                        <span key={j} className={tok.c}>
-                          {tok.t}
+              {/* Code window */}
+              <div className="relative rounded-2xl border border-white/8 bg-[#111] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]">
+                {/* Window chrome */}
+                <div className="flex items-center gap-2 px-5 py-4 border-b border-white/6 bg-[#0d0d0d]">
+                  <span className="w-3 h-3 rounded-full bg-red-500/70" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/70" />
+                  <span className="ml-3 text-xs text-[#444] font-mono">profile.ts</span>
+                </div>
+
+                {/* Code lines */}
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="p-6 font-mono text-sm leading-7"
+                >
+                  {codeLines.map((line, i) => (
+                    <motion.div
+                      key={i}
+                      variants={lineVariant}
+                      className="flex"
+                      style={{ paddingLeft: `${line.indent * 1.5}rem` }}
+                    >
+                      {line.tokens.map((token, j) => (
+                        <span key={j} className={token.c}>
+                          {token.t}
                         </span>
                       ))}
-                    </span>
-                  </motion.div>
-                ))}
-
-                {/* Blinking cursor */}
-                <motion.div
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 1.1, repeat: Infinity }}
-                  className="flex mt-1"
-                  style={{ paddingLeft: "0rem" }}
-                >
-                  <span className="select-none text-[#333] mr-4 text-xs leading-7 w-4 text-right shrink-0">
-                    {codeLines.length + 1}
-                  </span>
-                  <span className="inline-block w-2 h-5 bg-purple-400/70 rounded-sm" />
+                    </motion.div>
+                  ))}
                 </motion.div>
-              </motion.div>
 
-              {/* Glow accent */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-purple-600/15 blur-[60px] pointer-events-none" />
+                {/* Status bar */}
+                <div className="px-6 py-3 border-t border-white/6 bg-[#0d0d0d] flex items-center justify-between">
+                  <span className="text-xs text-[#444] font-mono">TypeScript</span>
+                  <span className="flex items-center gap-1.5 text-xs text-green-400 font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    ready
+                  </span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.6 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#444]"
-        >
-          <span className="text-xs font-mono tracking-widest uppercase">scroll</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown size={16} />
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.6 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-[#444] text-xs font-mono tracking-widest uppercase">scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowDown size={16} className="text-[#444]" />
+        </motion.div>
+      </motion.div>
     </motion.section>
   );
 }

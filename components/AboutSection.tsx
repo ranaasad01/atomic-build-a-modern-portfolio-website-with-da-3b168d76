@@ -49,7 +49,7 @@ export default function AboutSection() {
               <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                 <img
                   src="https://media.licdn.com/dms/image/v2/D4E03AQHyzi4PondriQ/profile-displayphoto-shrink_200_200/B4EZdVcKjiHQAc-/0/1749485136590?e=2147483647&v=beta&t=PjDLOiKctni6kjpGzJWOFYEjfSI7OhL2PcmgzNhje2s"
-                  alt="Rao Muhammad Ali — Full-Stack Engineer"
+                  alt="Rao Muhammad Ali — SQA Engineer"
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay gradient */}
@@ -64,8 +64,9 @@ export default function AboutSection() {
               >
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-xs text-white/80 font-medium">Open to opportunities</span>
+                  <span className="text-xs text-white/80 font-medium">Open to Work</span>
                 </div>
+                <p className="text-xs text-[#888] mt-0.5 pl-4">Available for SQA roles</p>
               </motion.div>
             </div>
           </motion.div>
@@ -89,55 +90,50 @@ export default function AboutSection() {
 
             <motion.p
               variants={fadeInRight}
-              className="text-[#888] text-lg leading-relaxed"
+              className="text-[#888] text-lg leading-relaxed text-pretty"
             >
-              Hey, I&apos;m <span className="text-white font-medium">Rao Muhammad Ali</span> — a full-stack
-              engineer with a passion for building products that live at the intersection of
-              performance, accessibility, and beautiful design.
+              I&apos;m Rao Muhammad Ali, an SQA Engineer with 3+ years of experience ensuring software quality across web, mobile, and API layers. I specialize in building robust test automation frameworks that integrate seamlessly into CI/CD pipelines.
             </motion.p>
 
             <motion.p
               variants={fadeInRight}
-              className="text-[#888] leading-relaxed"
+              className="text-[#666] leading-relaxed text-pretty"
             >
-              Over the past 5+ years I&apos;ve shipped production software for startups and
-              scale-ups across fintech, SaaS, and developer tooling. I care deeply about
-              clean architecture, thoughtful UX, and code that future-you will actually enjoy
-              reading.
+              My approach combines manual exploratory testing with automated regression suites — using tools like Cypress, Selenium, Postman, and JMeter. I believe quality is everyone&apos;s responsibility, and I work closely with developers and product teams to shift testing left.
             </motion.p>
 
             {/* Stats row */}
             <motion.div
               variants={staggerContainer}
-              className="grid grid-cols-3 gap-4 pt-4"
+              className="grid grid-cols-3 gap-4 pt-2"
             >
               {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   variants={scaleIn}
-                  className="card-surface rounded-2xl p-4 text-center"
+                  className="card-surface rounded-2xl p-4 text-center border border-white/5 hover:border-purple-500/20 transition-colors duration-300"
                 >
-                  <p className="text-2xl md:text-3xl font-bold text-gradient">{stat.value}</p>
-                  <p className="text-[#555] text-xs mt-1 leading-tight">{stat.label}</p>
+                  <div className="text-2xl md:text-3xl font-bold text-gradient mb-1">{stat.value}</div>
+                  <div className="text-xs text-[#555] font-medium leading-tight">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* CTA buttons */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 pt-2">
+            {/* CTA */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-1">
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95"
+                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.45)] active:scale-95"
               >
                 Get in touch
               </a>
               <a
                 href="/resume"
-                className="px-6 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-[#888] hover:text-white text-sm font-medium transition-all duration-300"
+                className="px-6 py-3 rounded-full border border-white/10 hover:border-white/20 text-[#888] hover:text-white text-sm font-medium transition-all duration-300"
               >
                 View résumé
               </a>

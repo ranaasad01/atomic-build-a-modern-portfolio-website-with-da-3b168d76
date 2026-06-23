@@ -72,7 +72,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="mailto:hello@example.com"
+            href="mailto:raoali.qa@gmail.com"
             className="ml-3 px-5 py-2 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95"
           >
             Hire Me
@@ -109,8 +109,8 @@ export default function Navbar() {
                 </Link>
               ))}
               <a
-                href="mailto:hello@example.com"
-                className="mt-2 px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 text-center"
+                href="mailto:raoali.qa@gmail.com"
+                className="mt-2 px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold text-center transition-all duration-300"
               >
                 Hire Me
               </a>

@@ -16,7 +16,7 @@ const socials = [
   { label: "GitHub", href: "https://github.com", icon: "Github" },
   { label: "LinkedIn", href: "https://linkedin.com", icon: "Linkedin" },
   { label: "Twitter", href: "https://twitter.com", icon: "Twitter" },
-  { label: "Email", href: "mailto:hello@example.com", icon: "Mail" },
+  { label: "Email", href: "mailto:raoali.qa@gmail.com", icon: "Mail" },
 ];
 
 export default function Footer() {
@@ -54,7 +54,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-[#555] text-sm">
-              Building digital experiences that matter.
+              Ensuring quality in every line of code.
             </p>
           </div>
 

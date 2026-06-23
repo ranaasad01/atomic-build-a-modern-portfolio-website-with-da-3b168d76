@@ -8,29 +8,29 @@ import { fadeInUp, staggerContainer, scaleIn, slideInFromBottom } from "@/lib/mo
 const socials = [
   {
     label: "GitHub",
-    handle: "@alexcarter",
+    handle: "@raomuhammadali",
     href: "https://github.com",
     icon: Github,
     color: "hover:border-white/25 hover:text-white",
   },
   {
     label: "LinkedIn",
-    handle: "Alex Carter",
+    handle: "Rao Muhammad Ali",
     href: "https://linkedin.com",
     icon: Linkedin,
     color: "hover:border-blue-500/40 hover:text-blue-400",
   },
   {
     label: "Twitter",
-    handle: "@alexcarter_dev",
+    handle: "@raoali_qa",
     href: "https://twitter.com",
     icon: Twitter,
     color: "hover:border-sky-500/40 hover:text-sky-400",
   },
   {
     label: "Email",
-    handle: "hello@alexcarter.dev",
-    href: "mailto:hello@alexcarter.dev",
+    handle: "raoali.qa@gmail.com",
+    href: "mailto:raoali.qa@gmail.com",
     icon: Mail,
     color: "hover:border-purple-500/40 hover:text-purple-400",
   },
@@ -108,122 +108,106 @@ export default function ContactSection() {
                 return (
                   <motion.a
                     key={s.label}
+                    variants={scaleIn}
                     href={s.href}
                     target={s.href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    variants={fadeInUp}
-                    whileHover={{ x: 6, scale: 1.03, transition: { type: 'spring', stiffness: 300, damping: 18 } }}
-                    whileTap={{ scale: 0.96 }}
-                    className={`flex items-center gap-3 p-4 rounded-xl border border-white/8 bg-white/2 text-[#666] transition-all duration-300 group ${s.color}`}
+                    className={`group flex items-center gap-3 p-4 rounded-2xl border border-white/8 bg-white/2 transition-all duration-300 ${s.color}`}
                   >
-                    <span className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-white/8 transition-colors">
-                      <Icon size={18} />
+                    <span className="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center text-[#555] group-hover:border-current group-hover:text-current transition-all duration-300 shrink-0">
+                      <Icon size={16} />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-xs text-[#555] font-medium">{s.label}</p>
-                      <p className="text-sm font-semibold text-white/80 truncate">{s.handle}</p>
+                      <p className="text-xs text-[#555] font-medium mb-0.5">{s.label}</p>
+                      <p className="text-sm text-white/70 font-medium truncate group-hover:text-current transition-colors duration-300">{s.handle}</p>
                     </div>
-                    <ArrowRight size={14} className="ml-auto shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </motion.a>
                 );
               })}
             </motion.div>
           </motion.div>
 
-          {/* Right — contact form with slideInFromBottom entrance */}
+          {/* Right — contact form */}
           <motion.div
             variants={slideInFromBottom}
             initial="hidden"
             whileInView="visible"
             viewport={vp}
           >
-            {submitted ? (
-              <motion.div
-                variants={scaleIn}
-                initial="hidden"
-                animate="visible"
-                className="card-surface rounded-2xl p-10 border border-white/6 flex flex-col items-center justify-center text-center gap-5 min-h-[400px]"
-              >
-                <div className="w-16 h-16 rounded-full bg-purple-500/15 border border-purple-500/30 flex items-center justify-center">
-                  <Mail size={28} className="text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Message sent!</h3>
-                  <p className="text-[#666] text-sm leading-relaxed">
+            <div className="card-surface rounded-3xl p-8 border border-white/6 shadow-[0_8px_48px_rgba(0,0,0,0.4)]">
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 120, damping: 14 }}
+                  className="flex flex-col items-center justify-center py-12 text-center gap-4"
+                >
+                  <div className="w-16 h-16 rounded-full bg-purple-500/15 border border-purple-500/30 flex items-center justify-center mb-2">
+                    <svg className="w-7 h-7 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Message sent!</h3>
+                  <p className="text-[#666] text-sm max-w-xs">
                     Thanks for reaching out. I&apos;ll get back to you within 24 hours.
                   </p>
-                </div>
-                <button
-                  onClick={() => { setSubmitted(false); setFormState({ name: "", email: "", message: "" }); }}
-                  className="text-sm text-purple-400 hover:text-purple-300 transition-colors underline underline-offset-4"
-                >
-                  Send another message
-                </button>
-              </motion.div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="card-surface rounded-2xl p-8 border border-white/6 flex flex-col gap-5 shadow-[0_4px_40px_rgba(0,0,0,0.3)]"
-              >
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="name" className="text-xs font-medium text-[#555] tracking-wide uppercase">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formState.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-[#444] focus:outline-none focus:border-purple-500/50 focus:bg-white/6 transition-all duration-300"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="email" className="text-xs font-medium text-[#555] tracking-wide uppercase">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formState.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                    className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-[#444] focus:outline-none focus:border-purple-500/50 focus:bg-white/6 transition-all duration-300"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-xs font-medium text-[#555] tracking-wide uppercase">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={formState.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project..."
-                    className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-[#444] focus:outline-none focus:border-purple-500/50 focus:bg-white/6 transition-all duration-300 resize-none"
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.04, transition: { type: 'spring', stiffness: 300, damping: 16 } }}
-                  whileTap={{ scale: 0.96 }}
-                  className="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-colors duration-300 shadow-[0_0_30px_rgba(168,85,247,0.25)] hover:shadow-[0_0_40px_rgba(168,85,247,0.45)] flex items-center justify-center gap-2 group"
-                >
-                  Send Message
-                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.button>
-              </form>
-            )}
+                  <button
+                    onClick={() => { setSubmitted(false); setFormState({ name: "", email: "", message: "" }); }}
+                    className="mt-2 text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                  >
+                    Send another message
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  <div>
+                    <label className="block text-xs font-medium text-[#555] mb-2 tracking-wide uppercase">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formState.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-[#444] focus:outline-none focus:border-purple-500/50 focus:bg-white/5 transition-all duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-[#555] mb-2 tracking-wide uppercase">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formState.email}
+                      onChange={handleChange}
+                      placeholder="your@email.com"
+                      className="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-[#444] focus:outline-none focus:border-purple-500/50 focus:bg-white/5 transition-all duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-[#555] mb-2 tracking-wide uppercase">Message</label>
+                    <textarea
+                      name="message"
+                      required
+                      rows={5}
+                      value={formState.message}
+                      onChange={handleChange}
+                      placeholder="Tell me about your project..."
+                      className="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-[#444] focus:outline-none focus:border-purple-500/50 focus:bg-white/5 transition-all duration-300 resize-none"
+                    />
+                  </div>
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] mt-1"
+                  >
+                    Send message
+                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  </motion.button>
+                </form>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>

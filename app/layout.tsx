@@ -4,13 +4,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Rao Muhammad Ali — Full-Stack Engineer",
+  title: "Rao Muhammad Ali — SQA Engineer",
   description:
-    "Portfolio of Rao Muhammad Ali, a full-stack engineer building fast, accessible, and beautiful digital products.",
-  keywords: ["full-stack engineer", "Next.js", "TypeScript", "React", "portfolio"],
+    "Portfolio of Rao Muhammad Ali, an SQA Engineer specializing in test automation, quality assurance, and software testing.",
+  keywords: ["SQA engineer", "test automation", "quality assurance", "software testing", "Selenium", "Cypress", "portfolio"],
   openGraph: {
-    title: "Rao Muhammad Ali — Full-Stack Engineer",
-    description: "Building digital experiences that matter.",
+    title: "Rao Muhammad Ali — SQA Engineer",
+    description: "Portfolio of Rao Muhammad Ali, an SQA Engineer specializing in test automation, quality assurance, and software testing.",
     type: "website",
   },
 };
