@@ -14,7 +14,7 @@ const TITLES = [
 
 const codeLines = [
   { indent: 0, tokens: [{ t: "const ", c: "text-purple-400" }, { t: "portfolio", c: "text-blue-300" }, { t: " = {", c: "text-white/70" }] },
-  { indent: 1, tokens: [{ t: "name", c: "text-green-300" }, { t: ": ", c: "text-white/50" }, { t: '"Alex Carter"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
+  { indent: 1, tokens: [{ t: "name", c: "text-green-300" }, { t: ": ", c: "text-white/50" }, { t: '"Rao Muhammad Ali"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
   { indent: 1, tokens: [{ t: "role", c: "text-green-300" }, { t: ": ", c: "text-white/50" }, { t: '"Full-Stack Engineer"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
   { indent: 1, tokens: [{ t: "stack", c: "text-green-300" }, { t: ": [", c: "text-white/50" }] },
   { indent: 2, tokens: [{ t: '"Next.js"', c: "text-amber-300" }, { t: ", ", c: "text-white/50" }, { t: '"TypeScript"', c: "text-amber-300" }, { t: ",", c: "text-white/50" }] },
@@ -89,135 +89,118 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 w-full pt-28 pb-20 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        {/* ── Left column ── */}
-        <div className="flex flex-col gap-8">
-          {/* Eyebrow badge */}
+      <div className="max-w-6xl mx-auto px-6 w-full pt-28 pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          {/* ── Left column ── */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="inline-flex items-center gap-2 w-fit"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col gap-6"
           >
-            <span className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/25 bg-purple-500/8 text-purple-300 text-xs font-mono tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              Available for work
-            </span>
-          </motion.div>
+            {/* Availability badge */}
+            <motion.div variants={popIn}>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-medium tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                Available for new projects
+              </span>
+            </motion.div>
 
-          {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 60, filter: 'blur(12px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ type: 'spring', stiffness: 60, damping: 14, delay: 0.3 }}
-            className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-balance"
-          >
-            Hi, I&apos;m{" "}
-            <span className="text-gradient glow-text">Alex Carter</span>
-          </motion.h1>
-
-          {/* Typewriter subtitle */}
-          <motion.div
-            initial={{ opacity: 0, x: -30, filter: 'blur(6px)' }}
-            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            transition={{ type: 'spring', stiffness: 80, damping: 16, delay: 0.55 }}
-            className="flex items-center gap-3 text-xl md:text-2xl text-[#888] font-light"
-          >
-            <span className="text-purple-400">&gt;</span>
-            <span className="font-mono">
-              {displayed}
-              <span className="inline-block w-0.5 h-5 bg-purple-400 ml-0.5 animate-pulse align-middle" />
-            </span>
-          </motion.div>
-
-          {/* Bio blurb */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="text-[#666] text-lg leading-relaxed max-w-lg text-pretty"
-          >
-            I build fast, accessible, and beautiful digital products — from pixel-perfect
-            UIs to scalable backend systems. 5+ years turning ideas into production.
-          </motion.p>
-
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ type: 'spring', stiffness: 80, damping: 18, delay: 0.75 }}
-            className="flex flex-wrap gap-4"
-          >
-            <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-7 py-3.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] active:scale-95"
+            {/* Name */}
+            <motion.h1
+              variants={fadeInUp}
+              className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-balance"
             >
-              View my work
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-7 py-3.5 rounded-full border border-white/12 hover:border-purple-500/40 text-white/80 hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/4 active:scale-95"
+              Hi, I&apos;m{" "}
+              <span className="text-gradient">Rao Muhammad Ali</span>
+            </motion.h1>
+
+            {/* Typewriter role */}
+            <motion.div variants={fadeInUp} className="h-10 flex items-center">
+              <span className="text-xl md:text-2xl text-[#888] font-light">
+                {displayed}
+                <span className="inline-block w-0.5 h-6 bg-purple-400 ml-0.5 animate-pulse align-middle" />
+              </span>
+            </motion.div>
+
+            {/* Bio */}
+            <motion.p
+              variants={fadeInUp}
+              className="text-[#888] text-base md:text-lg leading-relaxed max-w-lg"
             >
-              Get in touch
-            </a>
+              I build fast, accessible, and beautiful digital products — from
+              pixel-perfect UIs to scalable backend systems. Obsessed with
+              developer experience and clean code.
+            </motion.p>
+
+            {/* CTA row */}
+            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)] active:scale-95"
+              >
+                View My Work
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="px-6 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-white/80 hover:text-white text-sm font-semibold transition-all duration-300 hover:bg-white/5 active:scale-95"
+              >
+                Get In Touch
+              </a>
+            </motion.div>
+
+            {/* Social links */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-1">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+              >
+                <Github size={20} />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+              >
+                <Linkedin size={20} />
+              </a>
+              <a
+                href="mailto:hello@example.com"
+                aria-label="Email"
+                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+              >
+                <Mail size={20} />
+              </a>
+            </motion.div>
           </motion.div>
 
-          {/* Social links */}
+          {/* ── Right column — code window ── */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-            className="flex items-center gap-4 pt-2"
+            variants={fadeInRight}
+            initial="hidden"
+            animate="visible"
+            className="hidden lg:block"
           >
-            <span className="text-[#444] text-xs font-mono tracking-widest uppercase">Find me on</span>
-            <div className="flex items-center gap-3">
-              {[
-                { icon: Github, href: "https://github.com", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-white/8 flex items-center justify-center text-[#555] hover:text-purple-400 hover:border-purple-500/30 transition-all duration-300"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── Right column — code window ── */}
-        <motion.div
-          initial={{ opacity: 0, x: 60, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-          transition={{ type: 'spring', stiffness: 55, damping: 16, delay: 0.4 }}
-          className="hidden lg:block"
-        >
-          <div className="relative">
-            {/* Glow behind window */}
-            <div className="absolute -inset-4 rounded-3xl bg-purple-600/10 blur-2xl" />
-
-            {/* Terminal window */}
-            <div className="scan-overlay relative rounded-2xl border border-white/8 bg-[#0d0d0d] shadow-[0_24px_80px_rgba(0,0,0,0.6)] overflow-hidden">
-              {/* Title bar */}
-              <div className="flex items-center gap-2 px-5 py-4 border-b border-white/6 bg-[#111]">
+            <div className="relative rounded-2xl border border-white/8 bg-[#111] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden">
+              {/* Window chrome */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/6 bg-[#0d0d0d]">
                 <span className="w-3 h-3 rounded-full bg-red-500/70" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
                 <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                <span className="ml-4 text-[#444] text-xs font-mono">portfolio.ts</span>
+                <span className="ml-3 text-xs text-[#444] font-mono">portfolio.ts</span>
               </div>
 
               {/* Code lines */}
@@ -225,7 +208,7 @@ export default function HeroSection() {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="p-6 font-mono text-sm leading-7 space-y-0.5"
+                className="p-6 font-mono text-sm leading-7"
               >
                 {codeLines.map((line, i) => (
                   <motion.div
@@ -234,7 +217,7 @@ export default function HeroSection() {
                     className="flex"
                     style={{ paddingLeft: `${line.indent * 1.5}rem` }}
                   >
-                    <span className="select-none text-[#333] mr-5 text-xs w-4 text-right shrink-0">
+                    <span className="select-none text-[#333] mr-4 text-xs leading-7 w-4 text-right shrink-0">
                       {i + 1}
                     </span>
                     <span>
@@ -246,54 +229,43 @@ export default function HeroSection() {
                     </span>
                   </motion.div>
                 ))}
+
+                {/* Blinking cursor */}
+                <motion.div
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1.1, repeat: Infinity }}
+                  className="flex mt-1"
+                  style={{ paddingLeft: "0rem" }}
+                >
+                  <span className="select-none text-[#333] mr-4 text-xs leading-7 w-4 text-right shrink-0">
+                    {codeLines.length + 1}
+                  </span>
+                  <span className="inline-block w-2 h-5 bg-purple-400/70 rounded-sm" />
+                </motion.div>
               </motion.div>
 
-              {/* Status bar */}
-              <div className="flex items-center justify-between px-5 py-2.5 border-t border-white/5 bg-[#0a0a0a]">
-                <span className="text-[#333] text-xs font-mono">TypeScript</span>
-                <span className="flex items-center gap-1.5 text-green-400 text-xs font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  ready
-                </span>
-              </div>
+              {/* Glow accent */}
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-purple-600/15 blur-[60px] pointer-events-none" />
             </div>
+          </motion.div>
+        </div>
 
-            {/* Floating stat chips */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-5 -right-5 glass rounded-xl px-4 py-2.5 border border-white/8 shadow-lg"
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-purple-400 text-lg font-bold">40+</span>
-                <span className="text-[#666] text-xs">Projects shipped</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-5 -left-5 glass rounded-xl px-4 py-2.5 border border-white/8 shadow-lg"
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-green-400 text-lg font-bold">5+</span>
-                <span className="text-[#666] text-xs">Years experience</span>
-              </div>
-            </motion.div>
-          </div>
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.6 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#444]"
+        >
+          <span className="text-xs font-mono tracking-widest uppercase">scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowDown size={16} />
+          </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0], opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-        onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
-      >
-        <span className="text-[#444] text-xs font-mono tracking-widest uppercase">Scroll</span>
-        <ArrowDown size={16} className="text-[#444]" />
-      </motion.div>
     </motion.section>
   );
 }
