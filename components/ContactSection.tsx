@@ -4,19 +4,20 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Code2 as Github, Briefcase as Linkedin, MessageCircle as Twitter, Mail, ArrowRight } from 'lucide-react';
 import { fadeInUp, staggerContainer, scaleIn, slideInFromBottom } from "@/lib/motion";
+import { personalInfo } from "@/lib/data";
 
 const socials = [
   {
     label: "GitHub",
     handle: "@raomuhammadali",
-    href: "https://github.com",
+    href: personalInfo.github,
     icon: Github,
     color: "hover:border-white/25 hover:text-white",
   },
   {
     label: "LinkedIn",
-    handle: "Rao Muhammad Ali",
-    href: "https://linkedin.com",
+    handle: personalInfo.name,
+    href: personalInfo.linkedin,
     icon: Linkedin,
     color: "hover:border-blue-500/40 hover:text-blue-400",
   },
@@ -29,8 +30,8 @@ const socials = [
   },
   {
     label: "Email",
-    handle: "raoali.qa@gmail.com",
-    href: "mailto:raoali.qa@gmail.com",
+    handle: personalInfo.email,
+    href: "mailto:" + personalInfo.email,
     icon: Mail,
     color: "hover:border-purple-500/40 hover:text-purple-400",
   },
@@ -112,15 +113,16 @@ export default function ContactSection() {
                     href={s.href}
                     target={s.href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className={`group flex items-center gap-3 p-4 rounded-2xl border border-white/8 bg-white/2 transition-all duration-300 ${s.color}`}
+                    className={`group flex items-center gap-4 p-4 rounded-2xl border border-white/[0.06] bg-[#161616] transition-all duration-300 ${s.color}`}
                   >
-                    <span className="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center text-[#555] group-hover:border-current group-hover:text-current transition-all duration-300 shrink-0">
-                      <Icon size={16} />
+                    <span className="w-10 h-10 rounded-xl border border-white/8 bg-white/3 flex items-center justify-center text-[#888] group-hover:scale-110 transition-transform duration-300">
+                      <Icon size={18} />
                     </span>
                     <div className="min-w-0">
                       <p className="text-xs text-[#555] font-medium mb-0.5">{s.label}</p>
-                      <p className="text-sm text-white/70 font-medium truncate group-hover:text-current transition-colors duration-300">{s.handle}</p>
+                      <p className="text-sm text-white/80 font-medium truncate">{s.handle}</p>
                     </div>
+                    <ArrowRight size={14} className="ml-auto text-[#444] group-hover:text-current group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                   </motion.a>
                 );
               })}
@@ -134,26 +136,24 @@ export default function ContactSection() {
             whileInView="visible"
             viewport={vp}
           >
-            <div className="card-surface rounded-3xl p-8 border border-white/6 shadow-[0_8px_48px_rgba(0,0,0,0.4)]">
+            <div className="bg-[#161616] border border-white/[0.06] rounded-3xl p-8">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: 'spring', stiffness: 120, damping: 14 }}
-                  className="flex flex-col items-center justify-center py-12 text-center gap-4"
+                  className="flex flex-col items-center justify-center text-center py-12 gap-4"
                 >
                   <div className="w-16 h-16 rounded-full bg-purple-500/15 border border-purple-500/30 flex items-center justify-center mb-2">
-                    <svg className="w-7 h-7 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Mail size={28} className="text-purple-400" />
                   </div>
                   <h3 className="text-xl font-bold text-white">Message sent!</h3>
                   <p className="text-[#666] text-sm max-w-xs">
-                    Thanks for reaching out. I&apos;ll get back to you within 24 hours.
+                    Thanks for reaching out. I&apos;ll get back to you as soon as possible.
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setFormState({ name: "", email: "", message: "" }); }}
-                    className="mt-2 text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                    className="mt-4 text-sm text-purple-400 hover:text-purple-300 transition-colors"
                   >
                     Send another message
                   </button>
@@ -161,7 +161,7 @@ export default function ContactSection() {
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div>
-                    <label className="block text-xs font-medium text-[#555] mb-2 tracking-wide uppercase">Name</label>
+                    <label className="block text-xs text-[#555] font-medium mb-2 tracking-wide uppercase">Name</label>
                     <input
                       type="text"
                       name="name"
@@ -173,7 +173,7 @@ export default function ContactSection() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-[#555] mb-2 tracking-wide uppercase">Email</label>
+                    <label className="block text-xs text-[#555] font-medium mb-2 tracking-wide uppercase">Email</label>
                     <input
                       type="email"
                       name="email"
@@ -185,7 +185,7 @@ export default function ContactSection() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-[#555] mb-2 tracking-wide uppercase">Message</label>
+                    <label className="block text-xs text-[#555] font-medium mb-2 tracking-wide uppercase">Message</label>
                     <textarea
                       name="message"
                       required
@@ -200,10 +200,10 @@ export default function ContactSection() {
                     type="submit"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] mt-1"
+                    className="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.45)] flex items-center justify-center gap-2 group"
                   >
-                    Send message
-                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    Send Message
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                   </motion.button>
                 </form>
               )}

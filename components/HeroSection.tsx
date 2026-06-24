@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowDown, Code2 as Github, Briefcase as Linkedin, Mail } from 'lucide-react';
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, popIn } from "@/lib/motion";
+import { personalInfo } from "@/lib/data";
 
 const TITLES = [
   'SQA Engineer',
@@ -14,7 +15,7 @@ const TITLES = [
 
 const codeLines = [
   { indent: 0, tokens: [{ t: 'const ', c: 'text-purple-400' }, { t: 'profile', c: 'text-blue-300' }, { t: ' = {', c: 'text-white/70' }] },
-  { indent: 1, tokens: [{ t: 'name', c: 'text-green-300' }, { t: ': ', c: 'text-white/50' }, { t: '"Rao Muhammad Ali"', c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
+  { indent: 1, tokens: [{ t: 'name', c: 'text-green-300' }, { t: ': ', c: 'text-white/50' }, { t: `"${personalInfo.name}"`, c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
   { indent: 1, tokens: [{ t: 'role', c: 'text-green-300' }, { t: ': ', c: 'text-white/50' }, { t: '"SQA Engineer"', c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
   { indent: 1, tokens: [{ t: 'tools', c: 'text-green-300' }, { t: ': [', c: 'text-white/50' }] },
   { indent: 2, tokens: [{ t: '"Cypress"', c: 'text-amber-300' }, { t: ', ', c: 'text-white/50' }, { t: '"Selenium"', c: 'text-amber-300' }, { t: ',', c: 'text-white/50' }] },
@@ -90,7 +91,7 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 w-full pt-28 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           {/* ── Left column ── */}
           <motion.div
             variants={staggerContainer}
@@ -99,157 +100,152 @@ export default function HeroSection() {
             className="flex flex-col gap-6"
           >
             {/* Availability badge */}
-            <motion.div variants={popIn} className="inline-flex">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-mono tracking-wider">
+            <motion.div variants={popIn}>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/25 bg-purple-500/10 text-purple-300 text-xs font-medium tracking-wide">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Available for hire
+                Available for new opportunities
               </span>
             </motion.div>
 
             {/* Name */}
-            <motion.h1
-              variants={fadeInUp}
-              className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05]"
-            >
-              Hi, I&apos;m{" "}
-              <span className="text-gradient">Rao Muhammad Ali</span>
-            </motion.h1>
+            <motion.div variants={fadeInUp}>
+              <p className="text-[#555] text-sm font-mono tracking-[0.15em] uppercase mb-2">
+                Hi, I&apos;m
+              </p>
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-gradient">
+                {personalInfo.name}
+              </h1>
+            </motion.div>
 
             {/* Typewriter title */}
             <motion.div variants={fadeInUp} className="flex items-center gap-3 h-10">
-              <span className="text-xl md:text-2xl text-[#888] font-light">
+              <span className="text-xl md:text-2xl font-semibold text-white/80">
                 {displayed}
-                <span className="inline-block w-0.5 h-6 bg-purple-400 ml-0.5 animate-pulse align-middle" />
               </span>
+              <span
+                className="inline-block w-0.5 h-6 bg-purple-400 rounded-full"
+                style={{ animation: 'pulse 1s step-end infinite' }}
+              />
             </motion.div>
 
-            {/* Bio */}
+            {/* Short bio */}
             <motion.p
               variants={fadeInUp}
-              className="text-[#888] text-base md:text-lg leading-relaxed max-w-lg"
+              className="text-[#666] text-base md:text-lg leading-relaxed max-w-lg text-pretty"
             >
-              I build robust test automation frameworks and ensure software quality
-              at every stage of the SDLC. Passionate about clean code, CI/CD
-              integration, and zero-defect releases.
+              {personalInfo.shortBio}
             </motion.p>
 
             {/* CTA buttons */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-2">
+            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.55)] active:scale-95"
+              >
+                Hire Me
+              </a>
               <a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-7 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] active:scale-95"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/25 font-semibold text-sm transition-all duration-300 active:scale-95"
               >
                 View Projects
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="px-7 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-white/80 hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/5 active:scale-95"
-              >
-                Contact Me
               </a>
             </motion.div>
 
             {/* Social links */}
             <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-1">
               <a
-                href="https://github.com"
+                href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
                 aria-label="GitHub"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-white hover:border-white/25 transition-all duration-300"
               >
-                <Github size={20} />
+                <Github size={16} />
               </a>
               <a
-                href="https://linkedin.com"
+                href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
                 aria-label="LinkedIn"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-blue-400 hover:border-blue-500/30 transition-all duration-300"
               >
-                <Linkedin size={20} />
+                <Linkedin size={16} />
               </a>
               <a
-                href="mailto:raoali.qa@gmail.com"
-                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
+                href={`mailto:${personalInfo.email}`}
                 aria-label="Email"
+                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-purple-400 hover:border-purple-500/30 transition-all duration-300"
               >
-                <Mail size={20} />
+                <Mail size={16} />
               </a>
             </motion.div>
           </motion.div>
 
-          {/* ── Right column ── */}
+          {/* ── Right column — code window ── */}
           <motion.div
             variants={fadeInRight}
             initial="hidden"
             animate="visible"
-            className="hidden lg:flex flex-col gap-6 items-end"
+            className="hidden lg:block"
           >
-            {/* Profile photo */}
-            <motion.div
-              className="relative float-anim"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            >
-              <div className="w-64 h-64 xl:w-72 xl:h-72 rounded-3xl overflow-hidden border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.6)] pulse-glow">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
-                  alt="Rao Muhammad Ali"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80";
-                  }}
-                />
-              </div>
-              {/* Decorative rings */}
-              <div className="absolute -inset-3 rounded-3xl border border-purple-500/15 -z-10" />
-              <div className="absolute -inset-6 rounded-3xl border border-purple-500/8 -z-10" />
-            </motion.div>
+            <div className="relative">
+              {/* Glow behind card */}
+              <div className="absolute -inset-4 rounded-3xl bg-purple-600/10 blur-[40px] pointer-events-none" />
 
-            {/* Code window */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="w-full max-w-sm rounded-2xl overflow-hidden border border-white/6 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
-              style={{ background: '#0d0d0d' }}
-            >
-              {/* Window chrome */}
-              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5" style={{ background: '#161616' }}>
-                <span className="w-3 h-3 rounded-full bg-red-500/70" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                <span className="ml-3 text-xs text-[#555] font-mono">profile.ts</span>
-              </div>
-              {/* Code lines */}
-              <div className="px-5 py-4 font-mono text-xs leading-6">
-                {codeLines.map((line, i) => (
+              {/* Code window */}
+              <div className="relative rounded-2xl border border-white/8 bg-[#111] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
+                {/* Window chrome */}
+                <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/6 bg-[#0d0d0d]">
+                  <span className="w-3 h-3 rounded-full bg-red-500/70" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/70" />
+                  <span className="ml-3 text-xs text-[#444] font-mono">profile.ts</span>
+                </div>
+
+                {/* Code body */}
+                <div className="p-6 font-mono text-sm leading-7">
                   <motion.div
-                    key={i}
-                    variants={lineVariant}
-                    className="flex"
-                    style={{ paddingLeft: `${line.indent * 16}px` }}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
                   >
-                    <span className="text-[#555] select-none mr-4 w-4 text-right shrink-0">{i + 1}</span>
-                    <span>
-                      {line.tokens.map((tok, j) => (
-                        <span key={j} className={tok.c}>{tok.t}</span>
-                      ))}
-                    </span>
+                    {codeLines.map((line, i) => (
+                      <motion.div
+                        key={i}
+                        variants={lineVariant}
+                        className="flex"
+                        style={{ paddingLeft: `${line.indent * 1.5}rem` }}
+                      >
+                        <span className="select-none text-[#333] w-6 shrink-0 text-right mr-4 text-xs leading-7">
+                          {i + 1}
+                        </span>
+                        <span>
+                          {line.tokens.map((tok, j) => (
+                            <span key={j} className={tok.c}>
+                              {tok.t}
+                            </span>
+                          ))}
+                        </span>
+                      </motion.div>
+                    ))}
                   </motion.div>
-                ))}
+                </div>
+
+                {/* Status bar */}
+                <div className="flex items-center justify-between px-5 py-2 border-t border-white/5 bg-[#0d0d0d]">
+                  <span className="text-[10px] text-[#333] font-mono">TypeScript</span>
+                  <span className="flex items-center gap-1.5 text-[10px] text-green-400 font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    ready
+                  </span>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 
@@ -258,14 +254,14 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#444]"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
+          <span className="text-[#444] text-xs font-mono tracking-widest uppercase">scroll</span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ArrowDown size={16} />
+            <ArrowDown size={14} className="text-[#444]" />
           </motion.div>
         </motion.div>
       </div>

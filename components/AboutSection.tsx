@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer, scaleIn } from "@/lib/motion";
-import { stats } from "@/lib/data";
+import { stats, personalInfo } from "@/lib/data";
 
 export default function AboutSection() {
   const shouldReduce = useReducedMotion();
@@ -49,7 +49,7 @@ export default function AboutSection() {
               <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
-                  alt="Rao Muhammad Ali — SQA Engineer"
+                  alt={`${personalInfo.name} — SQA Engineer`}
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay gradient */}
@@ -88,54 +88,44 @@ export default function AboutSection() {
               through quality
             </motion.h2>
 
-            <motion.p variants={fadeInRight} className="text-[#888] text-lg leading-relaxed">
-              I&apos;m <span className="text-white font-medium">Rao Muhammad Ali</span>, an SQA Engineer
-              with 3+ years of experience ensuring software quality across web, mobile, and API layers.
-              I specialize in building robust test automation frameworks that catch bugs before they
-              reach production.
-            </motion.p>
-
-            <motion.p variants={fadeInRight} className="text-[#888] leading-relaxed">
-              My approach combines manual exploratory testing with automated regression suites,
-              performance benchmarking, and CI/CD integration — delivering confidence at every
-              release cycle. I&apos;m passionate about clean test architecture and mentoring teams
-              on QA best practices.
+            <motion.p variants={fadeInRight} className="text-[#888] text-lg leading-relaxed text-pretty">
+              {personalInfo.bio}
             </motion.p>
 
             {/* Stats grid */}
             <motion.div
               variants={staggerContainer}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2"
+              className="grid grid-cols-2 gap-4 pt-2"
             >
               {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   variants={scaleIn}
-                  className="card-surface rounded-2xl p-4 text-center hover:border-purple-500/20 transition-colors duration-300"
+                  className="card-surface rounded-2xl p-5 border border-white/[0.06] hover:border-purple-500/20 transition-colors duration-300"
                 >
-                  <p className="text-2xl font-bold text-gradient">{stat.value}</p>
-                  <p className="text-xs text-[#666] mt-1 leading-tight">{stat.label}</p>
+                  <p className="text-3xl font-bold text-gradient mb-1">{stat.value}</p>
+                  <p className="text-[#666] text-sm">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* CTA buttons */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 pt-1">
-              <a
-                href="/resume"
-                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95"
-              >
-                View Resume
-              </a>
+            {/* CTA */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-2">
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-white/80 hover:text-white text-sm font-semibold transition-all duration-300 hover:bg-white/5 active:scale-95"
+                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95"
               >
-                Get in Touch
+                Get in touch
+              </a>
+              <a
+                href="/resume"
+                className="px-6 py-3 rounded-full border border-white/10 hover:border-white/20 text-[#888] hover:text-white font-semibold text-sm transition-all duration-300"
+              >
+                View Resume
               </a>
             </motion.div>
           </motion.div>

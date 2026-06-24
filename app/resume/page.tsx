@@ -2,14 +2,8 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import { Download } from 'lucide-react';
-
-const skills = [
-  "Cypress", "Selenium", "Playwright", "Appium", "Postman", "Newman",
-  "JMeter", "REST Assured", "k6", "GitHub Actions", "Jenkins", "Docker",
-  "JIRA", "TestNG", "JUnit", "Java", "JavaScript", "TypeScript",
-  "Python", "SQL", "BDD/Gherkin", "Agile/Scrum", "ISTQB",
-];
+import { Download, MapPin, Mail, Briefcase as Linkedin } from 'lucide-react';
+import { experience, education, skills, personalInfo } from "@/lib/data";
 
 export default function ResumePage() {
   return (
@@ -34,15 +28,42 @@ export default function ResumePage() {
             variants={fadeInUp}
             className="text-4xl md:text-5xl font-bold text-gradient mb-3"
           >
-            Rao Muhammad Ali
+            {personalInfo.name}
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            className="text-[#888] text-lg mb-8"
+            className="text-[#888] text-lg mb-6"
           >
-            SQA Engineer · Test Automation · Quality Assurance
+            {personalInfo.tagline}
           </motion.p>
+
+          {/* Contact info row */}
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-wrap items-center gap-4 mb-8 text-sm text-[#666]"
+          >
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+            >
+              <Mail size={14} />
+              {personalInfo.email}
+            </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-purple-400 transition-colors"
+            >
+              <Linkedin size={14} />
+              LinkedIn
+            </a>
+            <span className="flex items-center gap-1.5">
+              <MapPin size={14} />
+              {personalInfo.location}
+            </span>
+          </motion.div>
 
           <motion.div variants={fadeInUp}>
             <a
@@ -75,10 +96,7 @@ export default function ResumePage() {
             Summary
           </h2>
           <p className="text-[#888] leading-relaxed">
-            Results-driven SQA Engineer with 3+ years of experience in manual and automated testing
-            across web, mobile, and API platforms. Proven track record of building scalable test
-            automation frameworks, reducing regression cycles, and collaborating with cross-functional
-            teams to deliver high-quality software.
+            {personalInfo.bio}
           </p>
         </motion.div>
 
@@ -101,95 +119,34 @@ export default function ResumePage() {
             Experience
           </h2>
 
-          {/* Job 1 */}
-          <div className="mb-8">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
-              <div>
-                <h3 className="text-white font-semibold text-base">SQA Engineer</h3>
-                <p style={{ color: "#a855f7" }} className="text-sm font-medium">TechCorp Solutions</p>
+          {experience.map((job, index) => (
+            <div key={job.id} className={index < experience.length - 1 ? "mb-8" : ""}>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
+                <div>
+                  <h3 className="text-white font-semibold text-base">{job.role}</h3>
+                  <p style={{ color: "#a855f7" }} className="text-sm font-medium">{job.company}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[#666] text-sm">{job.period}</p>
+                  <p className="text-[#555] text-xs">{job.location}</p>
+                </div>
               </div>
-              <span className="text-[#555] text-sm font-mono">2022 – Present</span>
+              <ul className="space-y-2">
+                {job.bullets.map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-2 text-[#888] text-sm leading-relaxed">
+                    <span
+                      className="mt-2 w-1 h-1 rounded-full shrink-0"
+                      style={{ background: "#a855f7" }}
+                    />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+              {index < experience.length - 1 && (
+                <div className="mt-8 border-t border-white/[0.04]" />
+              )}
             </div>
-            <ul className="space-y-2">
-              {[
-                "Built Cypress + TypeScript E2E framework reducing regression time by 70%",
-                "Automated 300+ API tests using Postman/Newman integrated with GitHub Actions",
-                "Led QA for 5 major product releases with zero critical post-release defects",
-              ].map((bullet, i) => (
-                <li key={i} className="flex items-start gap-2 text-[#888] text-sm leading-relaxed">
-                  <span
-                    className="mt-2 w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ background: "#a855f7" }}
-                  />
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-white/[0.06] mb-8" />
-
-          {/* Job 2 */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
-              <div>
-                <h3 className="text-white font-semibold text-base">Junior QA Analyst</h3>
-                <p style={{ color: "#a855f7" }} className="text-sm font-medium">Softwave Inc.</p>
-              </div>
-              <span className="text-[#555] text-sm font-mono">2021 – 2022</span>
-            </div>
-            <ul className="space-y-2">
-              {[
-                "Performed manual functional, regression, and UAT testing",
-                "Created and maintained 200+ test cases in JIRA/Zephyr",
-                "Collaborated with dev team in Agile sprints to ensure sprint quality",
-              ].map((bullet, i) => (
-                <li key={i} className="flex items-start gap-2 text-[#888] text-sm leading-relaxed">
-                  <span
-                    className="mt-2 w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ background: "#a855f7" }}
-                  />
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
-
-        {/* ── Skills ─────────────────────────────────────────────── */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="bg-[#161616] border border-white/[0.06] rounded-2xl p-6 mb-6"
-        >
-          <h2
-            className="text-lg font-bold mb-5 flex items-center gap-3"
-            style={{ color: "#f5f5f5" }}
-          >
-            <span
-              className="inline-block w-1 h-5 rounded-full"
-              style={{ background: "#a855f7" }}
-            />
-            Skills & Tools
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span
-                key={skill}
-                className="text-xs px-3 py-1 rounded-full border"
-                style={{
-                  background: "rgba(168, 85, 247, 0.10)",
-                  borderColor: "rgba(168, 85, 247, 0.20)",
-                  color: "#d8b4fe",
-                }}
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
+          ))}
         </motion.div>
 
         {/* ── Education ──────────────────────────────────────────── */}
@@ -208,34 +165,70 @@ export default function ResumePage() {
               className="inline-block w-1 h-5 rounded-full"
               style={{ background: "#a855f7" }}
             />
-            Education & Certifications
+            Education
           </h2>
 
-          {/* Degree */}
-          <div className="mb-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-              <div>
-                <h3 className="text-white font-semibold text-base">BS Computer Science</h3>
-                <p style={{ color: "#a855f7" }} className="text-sm font-medium">
-                  University of Engineering &amp; Technology
+          {education.map((edu, index) => (
+            <div key={edu.id} className={index < education.length - 1 ? "mb-6" : ""}>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <div>
+                  <h3 className="text-white font-semibold text-base">{edu.institution}</h3>
+                  <p className="text-[#888] text-sm mt-0.5">{edu.degree}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[#666] text-sm">{edu.period}</p>
+                  <p className="text-[#555] text-xs">{edu.location}</p>
+                </div>
+              </div>
+              {index < education.length - 1 && (
+                <div className="mt-6 border-t border-white/[0.04]" />
+              )}
+            </div>
+          ))}
+        </motion.div>
+
+        {/* ── Skills ─────────────────────────────────────────────── */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="bg-[#161616] border border-white/[0.06] rounded-2xl p-6 mb-6"
+        >
+          <h2
+            className="text-lg font-bold mb-6 flex items-center gap-3"
+            style={{ color: "#f5f5f5" }}
+          >
+            <span
+              className="inline-block w-1 h-5 rounded-full"
+              style={{ background: "#a855f7" }}
+            />
+            Skills
+          </h2>
+
+          <div className="space-y-5">
+            {skills.map((cat) => (
+              <div key={cat.category}>
+                <p className="text-[#666] text-xs font-mono tracking-widest uppercase mb-3">
+                  {cat.category}
                 </p>
+                <div className="flex flex-wrap gap-2">
+                  {cat.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium border"
+                      style={{
+                        background: "rgba(168,85,247,0.08)",
+                        borderColor: "rgba(168,85,247,0.2)",
+                        color: "#c084fc",
+                      }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <span className="text-[#555] text-sm font-mono">2017 – 2021</span>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-white/[0.06] mb-6" />
-
-          {/* Certification */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-              <div>
-                <h3 className="text-white font-semibold text-base">ISTQB Foundation Level</h3>
-                <p className="text-[#888] text-sm">Certification</p>
-              </div>
-              <span className="text-[#555] text-sm font-mono">2022</span>
-            </div>
+            ))}
           </div>
         </motion.div>
 

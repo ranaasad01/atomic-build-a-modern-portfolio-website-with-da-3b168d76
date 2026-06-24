@@ -6,6 +6,75 @@ export const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+export const personalInfo = {
+  name: "Rao Muhammad Ali",
+  tagline: "SQA Engineer · Test Automation · Quality Assurance",
+  email: "raoali.qa@gmail.com",
+  linkedin: "https://www.linkedin.com/in/rao-muhammad-ali-sqa/",
+  location: "Pakistan",
+  bio: "Results-driven SQA Engineer with 3+ years of hands-on experience in manual and automated testing across web, mobile, and API platforms. Skilled in building scalable test automation frameworks using Cypress, Selenium, and Playwright. Proven track record of reducing regression cycles, improving software quality, and collaborating with cross-functional Agile teams to deliver high-quality software products. ISTQB-certified with a strong foundation in QA methodologies, CI/CD integration, and performance testing.",
+};
+
+export const experience = [
+  {
+    id: 1,
+    role: "SQA Engineer",
+    company: "Arbisoft",
+    period: "Jan 2023 – Present",
+    location: "Lahore, Pakistan",
+    bullets: [
+      "Designed and maintained end-to-end test automation frameworks using Cypress and Playwright for large-scale web applications.",
+      "Collaborated with developers and product managers in Agile sprints to define acceptance criteria and test plans.",
+      "Integrated automated test suites into CI/CD pipelines via GitHub Actions, reducing regression time by 65%.",
+      "Conducted API testing using Postman and REST Assured, covering 300+ endpoints with data-driven test cases.",
+      "Performed performance and load testing with JMeter and k6, identifying bottlenecks before production releases.",
+    ],
+  },
+  {
+    id: 2,
+    role: "Junior SQA Engineer",
+    company: "Systems Limited",
+    period: "Jun 2021 – Dec 2022",
+    location: "Lahore, Pakistan",
+    bullets: [
+      "Executed manual functional, regression, and exploratory testing for enterprise web and mobile applications.",
+      "Developed Selenium WebDriver automation scripts in Java using the Page Object Model design pattern.",
+      "Managed bug lifecycle in JIRA, writing detailed defect reports and coordinating with dev teams for timely resolution.",
+      "Participated in test planning, test case design, and sprint reviews as part of a cross-functional Agile team.",
+      "Contributed to test documentation including test plans, test cases, and traceability matrices.",
+    ],
+  },
+  {
+    id: 3,
+    role: "QA Intern",
+    company: "Techlogix",
+    period: "Jan 2021 – May 2021",
+    location: "Lahore, Pakistan",
+    bullets: [
+      "Assisted senior QA engineers in manual testing of web-based enterprise applications.",
+      "Wrote and executed test cases for functional and UI testing across multiple browsers.",
+      "Learned and applied ISTQB testing principles and Agile QA practices.",
+    ],
+  },
+];
+
+export const education = [
+  {
+    id: 1,
+    institution: "University of Engineering and Technology (UET)",
+    degree: "Bachelor of Science in Computer Science",
+    period: "2017 – 2021",
+    location: "Lahore, Pakistan",
+  },
+  {
+    id: 2,
+    institution: "ISTQB",
+    degree: "Certified Tester Foundation Level (CTFL)",
+    period: "2022",
+    location: "International",
+  },
+];
+
 export const projects = [
   {
     id: 1,
@@ -76,7 +145,7 @@ export const stats = [
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com", icon: "Github" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "Linkedin" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rao-muhammad-ali-sqa/", icon: "Linkedin" },
   { label: "Twitter", href: "https://twitter.com", icon: "Twitter" },
-  { label: "Email", href: "mailto:hello@example.com", icon: "Mail" },
+  { label: "Email", href: "mailto:raoali.qa@gmail.com", icon: "Mail" },
 ];

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Code2 as Github, Briefcase as Linkedin, MessageCircle as Twitter, Mail } from 'lucide-react';
-import { navLinks } from "@/lib/data";
+import { navLinks, personalInfo } from "@/lib/data";
 
 const iconMap: Record<string, React.ReactNode> = {
   Github: <Github size={18} />,
@@ -13,10 +13,10 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const socials = [
-  { label: "GitHub", href: "https://github.com", icon: "Github" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "Linkedin" },
+  { label: "GitHub", href: personalInfo.github, icon: "Github" },
+  { label: "LinkedIn", href: personalInfo.linkedin, icon: "Linkedin" },
   { label: "Twitter", href: "https://twitter.com", icon: "Twitter" },
-  { label: "Email", href: "mailto:raoali.qa@gmail.com", icon: "Mail" },
+  { label: "Email", href: 'mailto:' + personalInfo.email, icon: "Mail" },
 ];
 
 export default function Footer() {
