@@ -48,7 +48,7 @@ export default function AboutSection() {
               {/* Avatar image */}
               <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                 <img
-                  src="https://media.licdn.com/dms/image/v2/D4E03AQHyzi4PondriQ/profile-displayphoto-shrink_200_200/B4EZdVcKjiHQAc-/0/1749485136590?e=2147483647&v=beta&t=PjDLOiKctni6kjpGzJWOFYEjfSI7OhL2PcmgzNhje2s"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
                   alt="Rao Muhammad Ali — SQA Engineer"
                   className="w-full h-full object-cover"
                 />
@@ -85,57 +85,57 @@ export default function AboutSection() {
             >
               Crafting digital{" "}
               <span className="text-gradient">experiences</span>{" "}
-              that resonate
+              through quality
             </motion.h2>
 
-            <motion.p
-              variants={fadeInRight}
-              className="text-[#888] text-lg leading-relaxed text-pretty"
-            >
-              I&apos;m Rao Muhammad Ali, an SQA Engineer with 3+ years of experience ensuring software quality across web, mobile, and API layers. I specialize in building robust test automation frameworks that integrate seamlessly into CI/CD pipelines.
+            <motion.p variants={fadeInRight} className="text-[#888] text-lg leading-relaxed">
+              I&apos;m <span className="text-white font-medium">Rao Muhammad Ali</span>, an SQA Engineer
+              with 3+ years of experience ensuring software quality across web, mobile, and API layers.
+              I specialize in building robust test automation frameworks that catch bugs before they
+              reach production.
             </motion.p>
 
-            <motion.p
-              variants={fadeInRight}
-              className="text-[#666] leading-relaxed text-pretty"
-            >
-              My approach combines manual exploratory testing with automated regression suites — using tools like Cypress, Selenium, Postman, and JMeter. I believe quality is everyone&apos;s responsibility, and I work closely with developers and product teams to shift testing left.
+            <motion.p variants={fadeInRight} className="text-[#888] leading-relaxed">
+              My approach combines manual exploratory testing with automated regression suites,
+              performance benchmarking, and CI/CD integration — delivering confidence at every
+              release cycle. I&apos;m passionate about clean test architecture and mentoring teams
+              on QA best practices.
             </motion.p>
 
-            {/* Stats row */}
+            {/* Stats grid */}
             <motion.div
               variants={staggerContainer}
-              className="grid grid-cols-3 gap-4 pt-2"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2"
             >
               {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   variants={scaleIn}
-                  className="card-surface rounded-2xl p-4 text-center border border-white/5 hover:border-purple-500/20 transition-colors duration-300"
+                  className="card-surface rounded-2xl p-4 text-center hover:border-purple-500/20 transition-colors duration-300"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-gradient mb-1">{stat.value}</div>
-                  <div className="text-xs text-[#555] font-medium leading-tight">{stat.label}</div>
+                  <p className="text-2xl font-bold text-gradient">{stat.value}</p>
+                  <p className="text-xs text-[#666] mt-1 leading-tight">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* CTA */}
-            <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-1">
+            {/* CTA buttons */}
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-3 pt-1">
+              <a
+                href="/resume"
+                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95"
+              >
+                View Resume
+              </a>
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.45)] active:scale-95"
+                className="px-6 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-white/80 hover:text-white text-sm font-semibold transition-all duration-300 hover:bg-white/5 active:scale-95"
               >
-                Get in touch
-              </a>
-              <a
-                href="/resume"
-                className="px-6 py-3 rounded-full border border-white/10 hover:border-white/20 text-[#888] hover:text-white text-sm font-medium transition-all duration-300"
-              >
-                View résumé
+                Get in Touch
               </a>
             </motion.div>
           </motion.div>

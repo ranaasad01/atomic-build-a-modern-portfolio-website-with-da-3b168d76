@@ -90,35 +90,33 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 w-full pt-28 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* ── Left column ── */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-7"
+            className="flex flex-col gap-6"
           >
-            {/* Eyebrow */}
-            <motion.div variants={fadeInUp} className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-              <span className="text-purple-400 text-xs font-mono tracking-[0.2em] uppercase">
-                Available for work
+            {/* Availability badge */}
+            <motion.div variants={popIn} className="inline-flex">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-mono tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                Available for hire
               </span>
             </motion.div>
 
             {/* Name */}
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] text-balance"
+              className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05]"
             >
-              Rao{" "}
-              <span className="text-gradient">Muhammad</span>
-              <br />
-              Ali
+              Hi, I&apos;m{" "}
+              <span className="text-gradient">Rao Muhammad Ali</span>
             </motion.h1>
 
             {/* Typewriter title */}
-            <motion.div variants={fadeInUp} className="flex items-center gap-3 h-9">
+            <motion.div variants={fadeInUp} className="flex items-center gap-3 h-10">
               <span className="text-xl md:text-2xl text-[#888] font-light">
                 {displayed}
                 <span className="inline-block w-0.5 h-6 bg-purple-400 ml-0.5 animate-pulse align-middle" />
@@ -128,14 +126,14 @@ export default function HeroSection() {
             {/* Bio */}
             <motion.p
               variants={fadeInUp}
-              className="text-[#666] text-lg leading-relaxed max-w-lg text-pretty"
+              className="text-[#888] text-base md:text-lg leading-relaxed max-w-lg"
             >
-              Passionate SQA Engineer dedicated to delivering high-quality software through
-              rigorous testing, automation frameworks, and a relentless pursuit of bug-free
-              experiences.
+              I build robust test automation frameworks and ensure software quality
+              at every stage of the SDLC. Passionate about clean code, CI/CD
+              integration, and zero-defect releases.
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTA buttons */}
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-2">
               <a
                 href="#projects"
@@ -143,7 +141,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-7 py-3.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] active:scale-95"
+                className="px-7 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] active:scale-95"
               >
                 View Projects
               </a>
@@ -153,9 +151,9 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-7 py-3.5 rounded-full border border-white/10 hover:border-purple-500/40 text-[#888] hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/5 active:scale-95"
+                className="px-7 py-3 rounded-full border border-white/10 hover:border-purple-500/40 text-white/80 hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/5 active:scale-95"
               >
-                Get in Touch
+                Contact Me
               </a>
             </motion.div>
 
@@ -165,103 +163,112 @@ export default function HeroSection() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
                 aria-label="GitHub"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-white hover:border-white/25 transition-all duration-300"
               >
-                <Github size={16} />
+                <Github size={20} />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
                 aria-label="LinkedIn"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-blue-400 hover:border-blue-500/40 transition-all duration-300"
               >
-                <Linkedin size={16} />
+                <Linkedin size={20} />
               </a>
               <a
-                href="mailto:hello@example.com"
+                href="mailto:raoali.qa@gmail.com"
+                className="text-[#555] hover:text-purple-400 transition-colors duration-300"
                 aria-label="Email"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#555] hover:text-purple-400 hover:border-purple-500/40 transition-all duration-300"
               >
-                <Mail size={16} />
+                <Mail size={20} />
               </a>
             </motion.div>
           </motion.div>
 
-          {/* ── Right column — code window ── */}
+          {/* ── Right column ── */}
           <motion.div
             variants={fadeInRight}
             initial="hidden"
             animate="visible"
-            className="hidden lg:block"
+            className="hidden lg:flex flex-col gap-6 items-end"
           >
-            <div className="relative">
-              {/* Glow behind card */}
-              <div className="absolute -inset-4 rounded-3xl bg-purple-600/10 blur-[60px]" />
-
-              {/* Code window */}
-              <div className="relative rounded-2xl border border-white/8 bg-[#111] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]">
-                {/* Window chrome */}
-                <div className="flex items-center gap-2 px-5 py-4 border-b border-white/6 bg-[#0d0d0d]">
-                  <span className="w-3 h-3 rounded-full bg-red-500/70" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                  <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                  <span className="ml-3 text-xs text-[#444] font-mono">profile.ts</span>
-                </div>
-
-                {/* Code lines */}
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="p-6 font-mono text-sm leading-7"
-                >
-                  {codeLines.map((line, i) => (
-                    <motion.div
-                      key={i}
-                      variants={lineVariant}
-                      className="flex"
-                      style={{ paddingLeft: `${line.indent * 1.5}rem` }}
-                    >
-                      {line.tokens.map((token, j) => (
-                        <span key={j} className={token.c}>
-                          {token.t}
-                        </span>
-                      ))}
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                {/* Status bar */}
-                <div className="px-6 py-3 border-t border-white/6 bg-[#0d0d0d] flex items-center justify-between">
-                  <span className="text-xs text-[#444] font-mono">TypeScript</span>
-                  <span className="flex items-center gap-1.5 text-xs text-green-400 font-mono">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    ready
-                  </span>
-                </div>
+            {/* Profile photo */}
+            <motion.div
+              className="relative float-anim"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            >
+              <div className="w-64 h-64 xl:w-72 xl:h-72 rounded-3xl overflow-hidden border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.6)] pulse-glow">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+                  alt="Rao Muhammad Ali"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80";
+                  }}
+                />
               </div>
-            </div>
+              {/* Decorative rings */}
+              <div className="absolute -inset-3 rounded-3xl border border-purple-500/15 -z-10" />
+              <div className="absolute -inset-6 rounded-3xl border border-purple-500/8 -z-10" />
+            </motion.div>
+
+            {/* Code window */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="w-full max-w-sm rounded-2xl overflow-hidden border border-white/6 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+              style={{ background: '#0d0d0d' }}
+            >
+              {/* Window chrome */}
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5" style={{ background: '#161616' }}>
+                <span className="w-3 h-3 rounded-full bg-red-500/70" />
+                <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                <span className="w-3 h-3 rounded-full bg-green-500/70" />
+                <span className="ml-3 text-xs text-[#555] font-mono">profile.ts</span>
+              </div>
+              {/* Code lines */}
+              <div className="px-5 py-4 font-mono text-xs leading-6">
+                {codeLines.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    variants={lineVariant}
+                    className="flex"
+                    style={{ paddingLeft: `${line.indent * 16}px` }}
+                  >
+                    <span className="text-[#555] select-none mr-4 w-4 text-right shrink-0">{i + 1}</span>
+                    <span>
+                      {line.tokens.map((tok, j) => (
+                        <span key={j} className={tok.c}>{tok.t}</span>
+                      ))}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-[#444] text-xs font-mono tracking-widest uppercase">scroll</span>
+        {/* Scroll indicator */}
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#444]"
         >
-          <ArrowDown size={16} className="text-[#444]" />
+          <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowDown size={16} />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.section>
   );
 }
